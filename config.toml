@@ -2,7 +2,7 @@ baseURL = "https://codyeding.com/"
 languageCode = "en-us"
 title = "Cody Eding"
 theme="archie"
-copyright = "© Cody Eding. All rights reserved."
+# copyright = "© Cody Eding. All rights reserved." #overridden by child theme
 # Code Highlight
 pygmentsstyle = "monokai"
 pygmentscodefences = true
