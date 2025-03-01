@@ -18,6 +18,7 @@ paginate=3 # articles per page
 	subtitle = "Random IT musings."
 	mathjax = true # enable MathJax support
 	katex = true # enable KaTeX support
+	customcss = ["css/custom.css"]
 
 # Social Tags
 
