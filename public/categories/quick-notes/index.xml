@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Quick Notes on Cody Eding</title>
+    <link>https://codyeding.com/categories/quick-notes/</link>
+    <description>Recent content in Quick Notes on Cody Eding</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 May 2022 08:34:21 -0600</lastBuildDate><atom:link href="https://codyeding.com/categories/quick-notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mount Wasabi storage bucket using s3fs and /etc/fstab on Ubuntu</title>
+      <link>https://codyeding.com/s3fs-ubuntu-wasabi-fstab/</link>
+      <pubDate>Tue, 03 May 2022 08:34:21 -0600</pubDate>
+      
+      <guid>https://codyeding.com/s3fs-ubuntu-wasabi-fstab/</guid>
+      <description>Wasabi&amp;rsquo;s official documentation on using s3fs to mount a storage bucket is lacking an example of using /etc/fstab to persist the bucket mount following a reboot.
+To use /etc/fstab to permanently mount a Wasabi bucket using s3fs on Ubuntu, first install s3fs:
+sudo apt-get install s3fs Create a filesystem location to mount the bucket:
+sudo mkdir /mnt/wasabi_bucket sudo chmod 777 /mnt/wasabi_bucket Create the entry in /etc/fstab:
+wasabi_bucket:/ /mnt/wasabi_bucket fuse.s3fs _netdev,allow_other,use_path_request_style,url=https://s3.wasabisys.com,use_cache=/tmp 0 0 Mount the bucket:</description>
+    </item>
+    
+    <item>
+      <title>Fix AutoKey pasting blank lines in Ubuntu</title>
+      <link>https://codyeding.com/dbus-autokey-ubuntu/</link>
+      <pubDate>Thu, 08 Sep 2016 08:34:21 -0600</pubDate>
+      
+      <guid>https://codyeding.com/dbus-autokey-ubuntu/</guid>
+      <description>I have been using AutoKey on my Linux desktop to provide automated text insertion capabilities similar to what I get from AutoHotKey on my Windows systems. I prefer to keep things like my email and ticket signatures stored as hotkeys so I can more granularly choose when to use them.
+The version of AutoKey included in the Ubuntu repositories has an issue where blank lines are inserted rather than the expected text.</description>
+    </item>
+    
+    <item>
+      <title>Dealing with compromised accounts in Exchange Online</title>
+      <link>https://codyeding.com/exchange-online-compromised-accounts/</link>
+      <pubDate>Mon, 29 Aug 2016 08:34:21 -0600</pubDate>
+      
+      <guid>https://codyeding.com/exchange-online-compromised-accounts/</guid>
+      <description>We have lately had a rash of compromised email accounts in our Office 365 Exchange Online infrastructure. It appears a well-crafted phishing email caught at least a small percentage of our 100,000-plus mailboxes.
+The outbound SPAM protection in Office 365 and Exchange Online is very robust. Suspected SPAM messages are sent through a high-risk pool of IP addresses, and accounts are limited to 10,000 outbound messages per day before being blocked by the anti-SPAM intelligence.</description>
+    </item>
+    
+    <item>
+      <title>Add permission to Public Folder recursively with PowerShell</title>
+      <link>https://codyeding.com/exchange-online-add-permission-public-folder-recursively/</link>
+      <pubDate>Thu, 05 May 2016 16:32:34 -0600</pubDate>
+      
+      <guid>https://codyeding.com/exchange-online-add-permission-public-folder-recursively/</guid>
+      <description>We had a request to add permissions for a customer throughout a deeply nested structure in our Exchange Online Public Folders.
+These commands will not override or change permissions where they are already set.
+Connect to Exchange Online PowerShell $Cred = Get-Credential Connect-MSOLService -Credential $Cred $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell -Credential $Cred -Authentication Basic -AllowRedirection Import-PSSession $Session  Add Permissions and Verify Success In PowerShell, run:
+Get-PublicFolder -Identity &amp;quot;\Folder Name&amp;quot; -Recurse | Add-PublicFolderClientPermission -User jsmith -AccessRights Owner  Verify the change was successful:</description>
+    </item>
+    
+  </channel>
+</rss>

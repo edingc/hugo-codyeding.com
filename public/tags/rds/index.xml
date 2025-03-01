@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RDS on Cody Eding</title>
+    <link>https://codyeding.com/tags/rds/</link>
+    <description>Recent content in RDS on Cody Eding</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 31 Aug 2016 09:30:34 -0600</lastBuildDate><atom:link href="https://codyeding.com/tags/rds/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redirecting the root RDS Web Access URL to the login screen</title>
+      <link>https://codyeding.com/redirect-root-url-rds-web-access/</link>
+      <pubDate>Wed, 31 Aug 2016 09:30:34 -0600</pubDate>
+      
+      <guid>https://codyeding.com/redirect-root-url-rds-web-access/</guid>
+      <description>The root RDS Web Access URL (e.g. https://rds.domain.com) does not redirect to the RDS login screen by default in a Windows Server 2012R2 RDS farm setup. Thankfully, there is a simple change in Microsoft IIS to enable this functionality.
+In the IIS Manager on each RDS Web Access server in your farm, select &amp;ldquo;Default Web Site&amp;rdquo; from the left pane, and select &amp;ldquo;HTTP Redirect&amp;rdquo; from the &amp;ldquo;Default Web Site Home&amp;rdquo; pane.</description>
+    </item>
+    
+    <item>
+      <title>Highly-available Microsoft Remote Desktop Services Farm diagram</title>
+      <link>https://codyeding.com/visualizing-highly-available-rds-farm/</link>
+      <pubDate>Tue, 30 Aug 2016 13:50:34 -0600</pubDate>
+      
+      <guid>https://codyeding.com/visualizing-highly-available-rds-farm/</guid>
+      <description>I stood up my first Microsoft Remote Desktop Services several months ago, with a great deal of help from TheWolfBlog&amp;rsquo;s great guide.
+One thing I didn&amp;rsquo;t have when I started my work was a good illustration of how the final highly-available infrastructure would look. I&amp;rsquo;ve included an image of a sample setup below, and I hope it benefits someone.
+In the image below, the firewalls represent load balancers.</description>
+    </item>
+    
+  </channel>
+</rss>

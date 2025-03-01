@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.98.0" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Redirecting the root RDS Web Access URL to the login screen &middot; Cody Eding</title>
+  <meta name="description" content="By default, the Microsoft RDS Web Access root URL does not redirect to the RDS login screen. This can be changed by setting a redirect in IIS." />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://codyeding.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://codyeding.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://codyeding.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://codyeding.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Source+Sans+Pro:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-blue ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://codyeding.com/"><h1>Cody Eding</h1></a>
+      <p class="lead">
+       Random IT musings. 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://codyeding.com/">Home</a> </li>
+        <li><a href="https://github.com/edingc/"> Github </a></li><li><a href="https://www.linkedin.com/in/username/"> LinkedIn </a></li><li><a href="https://twitter.com/edingc/"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Redirecting the root RDS Web Access URL to the login screen</h1>
+  <time datetime=2016-08-31T09:30:34-0600 class="post-date">Wed, Aug 31, 2016</time>
+  <p>The root RDS Web Access URL (e.g. <strong><a href="https://rds.domain.com">https://rds.domain.com</a></strong>) does not redirect to the RDS login screen by default in a Windows Server 2012R2 RDS farm setup. Thankfully, there is a simple change in Microsoft IIS to enable this functionality.</p>
+<p>In the IIS Manager on each RDS Web Access server in your farm, select &ldquo;Default Web Site&rdquo; from the left pane, and select &ldquo;HTTP Redirect&rdquo; from the &ldquo;Default Web Site Home&rdquo; pane.</p>
+<p><img src="/img/20160831-rds-redirect-1.png" alt="RDS Web Access Redirect" title="RDS Web Access Redirect"></p>
+<p>Check &ldquo;Redirect requests to this destination:&rdquo; and enter <strong><a href="https://rds.domain.com/RDWeb">https://rds.domain.com/RDWeb</a></strong>. Check &ldquo;Only redirect requests to content is this directory (not subdirectories)&rdquo; and set the &ldquo;Status code&rdquo; dropdown to <strong>Found (302)</strong>.</p>
+<p><img src="/img/20160831-rds-redirect-2.png" alt="RDS Web Access Redirect" title="RDS Web Access Redirect"></p>
+<p>The root URL <strong><a href="https://rds.domain.com">https://rds.domain.com</a></strong> should now redirect to the RDS Web Access login page.</p>
+
+</div>
+
+<h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "codyeding" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-2714311-7', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+  </body>
+</html>

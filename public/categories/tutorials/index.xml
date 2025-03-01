@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorials on Cody Eding</title>
+    <link>https://codyeding.com/categories/tutorials/</link>
+    <description>Recent content in Tutorials on Cody Eding</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 Nov 2016 08:34:21 -0600</lastBuildDate><atom:link href="https://codyeding.com/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setup secure Munki repository and munki-enroll on Ubuntu 16.04 LTS</title>
+      <link>https://codyeding.com/ubuntu-1604-munki-enroll-repo-setup/</link>
+      <pubDate>Mon, 21 Nov 2016 08:34:21 -0600</pubDate>
+      
+      <guid>https://codyeding.com/ubuntu-1604-munki-enroll-repo-setup/</guid>
+      <description>I managed several thousand Macintosh desktops in a previous job with the help of Munki, an awesome open-source tool written by Greg Neagle. Alongside Munki, I created munki-enroll, which is now a popular way to manage the automated creation of computer-specific Munki manifests.
+I recently worked on a GitHub bug report that was actually not a bug in the munki-enroll code, but instead a problem stemming from a lack of documentation regarding the server-side requirements of munki-enroll.</description>
+    </item>
+    
+    <item>
+      <title>Redirecting the root RDS Web Access URL to the login screen</title>
+      <link>https://codyeding.com/redirect-root-url-rds-web-access/</link>
+      <pubDate>Wed, 31 Aug 2016 09:30:34 -0600</pubDate>
+      
+      <guid>https://codyeding.com/redirect-root-url-rds-web-access/</guid>
+      <description>The root RDS Web Access URL (e.g. https://rds.domain.com) does not redirect to the RDS login screen by default in a Windows Server 2012R2 RDS farm setup. Thankfully, there is a simple change in Microsoft IIS to enable this functionality.
+In the IIS Manager on each RDS Web Access server in your farm, select &amp;ldquo;Default Web Site&amp;rdquo; from the left pane, and select &amp;ldquo;HTTP Redirect&amp;rdquo; from the &amp;ldquo;Default Web Site Home&amp;rdquo; pane.</description>
+    </item>
+    
+  </channel>
+</rss>

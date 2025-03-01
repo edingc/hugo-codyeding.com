@@ -1,0 +1,21 @@
+/* Place custom css here. */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+header a{
+    color: #0068af;
+    font-family: 'Rubik', sans-serif;
+    text-transform: uppercase;
+}
+
+h1,h2,h3,h4 {
+    font-family: 'Rubik', sans-serif;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn {
+    background-color: #0068af;
+}

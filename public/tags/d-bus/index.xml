@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>D-BUS on Cody Eding</title>
+    <link>https://codyeding.com/tags/d-bus/</link>
+    <description>Recent content in D-BUS on Cody Eding</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Sep 2016 08:34:21 -0600</lastBuildDate><atom:link href="https://codyeding.com/tags/d-bus/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fix AutoKey pasting blank lines in Ubuntu</title>
+      <link>https://codyeding.com/dbus-autokey-ubuntu/</link>
+      <pubDate>Thu, 08 Sep 2016 08:34:21 -0600</pubDate>
+      
+      <guid>https://codyeding.com/dbus-autokey-ubuntu/</guid>
+      <description>I have been using AutoKey on my Linux desktop to provide automated text insertion capabilities similar to what I get from AutoHotKey on my Windows systems. I prefer to keep things like my email and ticket signatures stored as hotkeys so I can more granularly choose when to use them.
+The version of AutoKey included in the Ubuntu repositories has an issue where blank lines are inserted rather than the expected text.</description>
+    </item>
+    
+  </channel>
+</rss>

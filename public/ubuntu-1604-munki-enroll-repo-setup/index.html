@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.98.0" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Setup secure Munki repository and munki-enroll on Ubuntu 16.04 LTS &middot; Cody Eding</title>
+  <meta name="description" content="Setup a secure Munki/munki-enroll repository on Ubuntu." />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://codyeding.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://codyeding.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://codyeding.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://codyeding.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Source+Sans+Pro:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class="theme-base-blue ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://codyeding.com/"><h1>Cody Eding</h1></a>
+      <p class="lead">
+       Random IT musings. 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://codyeding.com/">Home</a> </li>
+        <li><a href="https://github.com/edingc/"> Github </a></li><li><a href="https://www.linkedin.com/in/username/"> LinkedIn </a></li><li><a href="https://twitter.com/edingc/"> Twitter </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Setup secure Munki repository and munki-enroll on Ubuntu 16.04 LTS</h1>
+  <time datetime=2016-11-21T08:34:21-0600 class="post-date">Mon, Nov 21, 2016</time>
+  <p>I managed several thousand Macintosh desktops in a previous job with the help of <a href="https://github.com/munki/munki">Munki</a>, an awesome open-source tool written by Greg Neagle. Alongside Munki, I created <a href="https://github.com/edingc/munki-enroll">munki-enroll</a>, which is now a popular way to manage the automated creation of computer-specific Munki manifests.</p>
+<p>I recently worked on a GitHub bug report that was actually not a bug in the munki-enroll code, but instead a problem stemming from a lack of documentation regarding the server-side requirements of munki-enroll. So, without further ado, here&rsquo;s a proper guide to setting up a Munki repository with munki-enroll on Ubuntu 16.04 LTS.</p>
+<p>Following this guide will result in a Apache web server, running PHP with the necessary extensions for munki-enroll, all secured with Basic Authentication and a free SSL certificate from Let&rsquo;s Encrypt. In this case, the server will be located at <em>munki.domain.com</em>.</p>
+<p><strong>External DNS (munki.domain.com) must resolve to the Munki server in order for the Let&rsquo;s Encrypt certificate bot to generate an SSL certificate successfully.</strong></p>
+<p>Update a fresh installation of Ubuntu 16.04 LTS and install all required dependencies. Munki-enroll requires PHP version 5.3 or later and the php-xml extensions package. These commands also install Git (to clone the munki-enroll repository), the Let&rsquo;s Encrypt certificate bot and the Apache webserver and required utilities:</p>
+<pre tabindex="0"><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade -y
+sudo apt-get install -y apache2 php git python-letsencrypt-apache apache2-utils libapache2-mod-php php-xml
+</code></pre><p>Once Ubuntu is updated and the required packages are installed, run the Let&rsquo;s Encrypt certificate bot to setup SSL on the Apache installation. The following command automatically agrees to the Let&rsquo;s Encrypt Terms of Service and redirects all non-HTTPS traffic to HTTPS. Substitute in the address of the Munki server and a good administrator email:</p>
+<pre tabindex="0"><code>sudo letsencrypt --apache -d munki.domain.com -n --email email@domain.com --agree-tos --redirect
+</code></pre><p>Next, create the folder structure for the Munki repository:</p>
+<pre tabindex="0"><code>sudo mkdir -p /var/www/html/munki_repo/{catalogs,manifests,pkgs,pkgsinfo}
+</code></pre><p>Then clone munki-enroll to <code>/tmp</code> using Git. Move the munki-enroll server scripts to the correct location:</p>
+<pre tabindex="0"><code>git clone https://github.com/edingc/munki-enroll.git /tmp/munki-enroll
+sudo mv /tmp/munki-enroll/munki-enroll /var/www/html/munki_repo
+</code></pre><p>Ensure Apache can write to the Munki repository:</p>
+<pre tabindex="0"><code>sudo chmod -R a+rX,g+w /var/www/html/munki_repo
+sudo chown -R www-data:www-data /var/www/html/munki_repo
+</code></pre><p>Create a password file containing a user called <em>munki</em>. Enter a password when prompted:</p>
+<pre tabindex="0"><code>sudo htpasswd -c /etc/apache2/.htpasswd munki
+</code></pre><p>Modify the Let&rsquo;s Encrypt-created Apache virtual host located at <code>/etc/apache2/sites-enabled/000-default-le-ssl.conf</code>. Look for the default <code>DocumentRoot</code> configuration:</p>
+<pre tabindex="0"><code>DocumentRoot /var/www/html
+</code></pre><p>Change <code>DocumentRoot</code> to the root of the Munki repository:</p>
+<pre tabindex="0"><code>DocumentRoot /var/www/html/munki_repo
+</code></pre><p>Paste the following at the bottom of the configuration file to setup the Munki repository with Basic Authentication:</p>
+<pre tabindex="0"><code>&lt;Directory &#34;/var/www/html/munki_repo&#34;&gt;
+  AuthType Basic
+  AuthName &#34;Restricted Content&#34;
+  AuthUserFile /etc/apache2/.htpasswd
+  Require valid-user
+&lt;/Directory&gt;
+</code></pre><p>Save the configuration file and restart Apache:</p>
+<pre tabindex="0"><code>sudo service apache2 restart
+</code></pre><p>That&rsquo;s it! Navigate to the repostory located at <strong>munki.domain.com</strong>. The web browser should redirect to <a href="https://munki.domain.com">https://munki.domain.com</a> and prompt for the username and password created earlier.</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<h3 id="lets-encrypt-certificate-renewal">Let&rsquo;s Encrypt Certificate Renewal</h3>
+<p>Let&rsquo;s Encrypt certificates are only valid for 90 days. It would be wise to setup a cron job to automatically renew the certificates when necessary.</p>
+<p>To setup certificate renewal, launch the root crontab in an editor:</p>
+<pre tabindex="0"><code>sudo crontab -e
+</code></pre><p>If you have not edited the crontab before, you may be prompted to select an editor. Per the instructions, nano is probably the easiest choice:</p>
+<pre tabindex="0"><code>no crontab for root - using an empty one
+
+Select an editor.  To change later, run &#39;select-editor&#39;.
+  1. /bin/ed
+  2. /bin/nano        &lt;---- easiest
+  3. /usr/bin/vim.tiny
+
+Choose 1-3 [2]: 
+</code></pre><p>Add the following to the crontab and save:</p>
+<pre tabindex="0"><code>00 1 * * 1 /usr/bin/letsencrypt renew &gt;&gt; /var/log/letsencrypt-renew.log
+</code></pre><p>The Let&rsquo;s Encrypt certificate bot will now check for a renewed certificate at 1 a.m. every Monday.</p>
+<h3 id="why-no-smbcifsafp-access">Why no SMB/CIFS/AFP access?</h3>
+<p>In my opinion, setting up SMB/CIFS (Samba) or AFP (Netatalk) for a simple Munki repository is more hassle than it is worth. Also, it may be preferrable to host the Munki repository with an external hosting provider depending on requirements. In that case, it would not be safe to have file sharing protocols open over the Internet.</p>
+<p>My recommendation would be to use <a href="https://osxfuse.github.io/">SSHFS and FUSE for macOS</a> to mount the Munki repository to administrative machines securely over SSH.</p>
+
+</div>
+
+<h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "codyeding" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </main>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-2714311-7', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+  </body>
+</html>

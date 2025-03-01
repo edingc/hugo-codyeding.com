@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>s3fs on Cody Eding</title>
+    <link>https://codyeding.com/tags/s3fs/</link>
+    <description>Recent content in s3fs on Cody Eding</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 May 2022 08:34:21 -0600</lastBuildDate><atom:link href="https://codyeding.com/tags/s3fs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mount Wasabi storage bucket using s3fs and /etc/fstab on Ubuntu</title>
+      <link>https://codyeding.com/s3fs-ubuntu-wasabi-fstab/</link>
+      <pubDate>Tue, 03 May 2022 08:34:21 -0600</pubDate>
+      
+      <guid>https://codyeding.com/s3fs-ubuntu-wasabi-fstab/</guid>
+      <description>Wasabi&amp;rsquo;s official documentation on using s3fs to mount a storage bucket is lacking an example of using /etc/fstab to persist the bucket mount following a reboot.
+To use /etc/fstab to permanently mount a Wasabi bucket using s3fs on Ubuntu, first install s3fs:
+sudo apt-get install s3fs Create a filesystem location to mount the bucket:
+sudo mkdir /mnt/wasabi_bucket sudo chmod 777 /mnt/wasabi_bucket Create the entry in /etc/fstab:
+wasabi_bucket:/ /mnt/wasabi_bucket fuse.s3fs _netdev,allow_other,use_path_request_style,url=https://s3.wasabisys.com,use_cache=/tmp 0 0 Mount the bucket:</description>
+    </item>
+    
+  </channel>
+</rss>
