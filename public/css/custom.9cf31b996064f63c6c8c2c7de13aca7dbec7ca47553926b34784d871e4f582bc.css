@@ -1,0 +1,24 @@
+:root{
+    --maincolor: #0068af;
+    --bordercl:rebeccapurple;
+    --callouctcolor:dodgerblue;
+    --hovercolor:#e7e7e7;
+    --darkMaincolor: #0068af;
+    }
+html {
+    font-family: 'Roboto Slab', serif;
+}
+a {
+    color: #0068af;
+    text-decoration: none;
+    border-bottom: none;
+    }
+a:hover {
+    background-color: var(--hovercolor);
+    border-bottom: 3px solid var(--maincolor);
+    color: inherit;
+}
+/* Footer */
+footer {
+    border-top: 1pxsolid var(--bordercl);
+  }

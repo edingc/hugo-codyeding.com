@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Cody Eding</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on Cody Eding</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 May 2022 08:34:21 -0600</lastBuildDate>
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mount Wasabi storage bucket using s3fs and /etc/fstab on Ubuntu</title>
+      <link>http://localhost:1313/post/s3fs-ubuntu-wasabi-fstab/</link>
+      <pubDate>Tue, 03 May 2022 08:34:21 -0600</pubDate>
+      <guid>http://localhost:1313/post/s3fs-ubuntu-wasabi-fstab/</guid>
+      <description>Wasabi&amp;rsquo;s official documentation on using s3fs to mount a storage bucket is lacking an example of using /etc/fstab to persist the bucket mount following a reboot.&#xA;To use /etc/fstab to permanently mount a Wasabi bucket using s3fs on Ubuntu, first install s3fs:&#xA;sudo apt-get install s3fs Create a filesystem location to mount the bucket:&#xA;sudo mkdir /mnt/wasabi_bucket sudo chmod 777 /mnt/wasabi_bucket Create the entry in /etc/fstab:&#xA;wasabi_bucket:/ /mnt/wasabi_bucket fuse.s3fs _netdev,allow_other,use_path_request_style,url=https://s3.wasabisys.com,use_cache=/tmp 0 0 Mount the bucket:</description>
+    </item>
+    <item>
+      <title>Setup secure Munki repository and munki-enroll on Ubuntu 16.04 LTS</title>
+      <link>http://localhost:1313/post/ubuntu-1604-munki-enroll-repo-setup/</link>
+      <pubDate>Mon, 21 Nov 2016 08:34:21 -0600</pubDate>
+      <guid>http://localhost:1313/post/ubuntu-1604-munki-enroll-repo-setup/</guid>
+      <description>I managed several thousand Macintosh desktops in a previous job with the help of Munki, an awesome open-source tool written by Greg Neagle. Alongside Munki, I created munki-enroll, which is now a popular way to manage the automated creation of computer-specific Munki manifests.&#xA;I recently worked on a GitHub bug report that was actually not a bug in the munki-enroll code, but instead a problem stemming from a lack of documentation regarding the server-side requirements of munki-enroll.</description>
+    </item>
+    <item>
+      <title>Fix AutoKey pasting blank lines in Ubuntu</title>
+      <link>http://localhost:1313/post/dbus-autokey-ubuntu/</link>
+      <pubDate>Thu, 08 Sep 2016 08:34:21 -0600</pubDate>
+      <guid>http://localhost:1313/post/dbus-autokey-ubuntu/</guid>
+      <description>I have been using AutoKey on my Linux desktop to provide automated text insertion capabilities similar to what I get from AutoHotKey on my Windows systems. I prefer to keep things like my email and ticket signatures stored as hotkeys so I can more granularly choose when to use them.&#xA;The version of AutoKey included in the Ubuntu repositories has an issue where blank lines are inserted rather than the expected text.</description>
+    </item>
+    <item>
+      <title>Redirecting the root RDS Web Access URL to the login screen</title>
+      <link>http://localhost:1313/post/redirect-root-url-rds-web-access/</link>
+      <pubDate>Wed, 31 Aug 2016 09:30:34 -0600</pubDate>
+      <guid>http://localhost:1313/post/redirect-root-url-rds-web-access/</guid>
+      <description>The root RDS Web Access URL (e.g. https://rds.domain.com) does not redirect to the RDS login screen by default in a Windows Server 2012R2 RDS farm setup. Thankfully, there is a simple change in Microsoft IIS to enable this functionality.&#xA;In the IIS Manager on each RDS Web Access server in your farm, select &amp;ldquo;Default Web Site&amp;rdquo; from the left pane, and select &amp;ldquo;HTTP Redirect&amp;rdquo; from the &amp;ldquo;Default Web Site Home&amp;rdquo; pane.</description>
+    </item>
+    <item>
+      <title>Highly-available Microsoft Remote Desktop Services Farm diagram</title>
+      <link>http://localhost:1313/post/visualizing-highly-available-rds-farm/</link>
+      <pubDate>Tue, 30 Aug 2016 13:50:34 -0600</pubDate>
+      <guid>http://localhost:1313/post/visualizing-highly-available-rds-farm/</guid>
+      <description>I stood up my first Microsoft Remote Desktop Services several months ago, with a great deal of help from TheWolfBlog&amp;rsquo;s great guide.&#xA;One thing I didn&amp;rsquo;t have when I started my work was a good illustration of how the final highly-available infrastructure would look. I&amp;rsquo;ve included an image of a sample setup below, and I hope it benefits someone.&#xA;In the image below, the firewalls represent load balancers.</description>
+    </item>
+    <item>
+      <title>Dealing with compromised accounts in Exchange Online</title>
+      <link>http://localhost:1313/post/exchange-online-compromised-accounts/</link>
+      <pubDate>Mon, 29 Aug 2016 08:34:21 -0600</pubDate>
+      <guid>http://localhost:1313/post/exchange-online-compromised-accounts/</guid>
+      <description>We have lately had a rash of compromised email accounts in our Office 365 Exchange Online infrastructure. It appears a well-crafted phishing email caught at least a small percentage of our 100,000-plus mailboxes.&#xA;The outbound SPAM protection in Office 365 and Exchange Online is very robust. Suspected SPAM messages are sent through a high-risk pool of IP addresses, and accounts are limited to 10,000 outbound messages per day before being blocked by the anti-SPAM intelligence.</description>
+    </item>
+    <item>
+      <title>Add permission to Public Folder recursively with PowerShell</title>
+      <link>http://localhost:1313/post/exchange-online-add-permission-public-folder-recursively/</link>
+      <pubDate>Thu, 05 May 2016 16:32:34 -0600</pubDate>
+      <guid>http://localhost:1313/post/exchange-online-add-permission-public-folder-recursively/</guid>
+      <description>We had a request to add permissions for a customer throughout a deeply nested structure in our Exchange Online Public Folders.&#xA;These commands will not override or change permissions where they are already set.&#xA;Connect to Exchange Online PowerShell $Cred = Get-Credential Connect-MSOLService -Credential $Cred $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell -Credential $Cred -Authentication Basic -AllowRedirection Import-PSSession $Session Add Permissions and Verify Success In PowerShell, run:&#xA;Get-PublicFolder -Identity &amp;quot;\Folder Name&amp;quot; -Recurse | Add-PublicFolderClientPermission -User jsmith -AccessRights Owner Verify the change was successful:</description>
+    </item>
+  </channel>
+</rss>

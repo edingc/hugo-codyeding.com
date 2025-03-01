@@ -2,82 +2,85 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://codyeding.com/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2022-05-03T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2022-05-03T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/linux/</loc>
+    <loc>http://localhost:1313/tags/linux/</loc>
     <lastmod>2022-05-03T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/s3fs-ubuntu-wasabi-fstab/</loc>
+    <loc>http://localhost:1313/post/s3fs-ubuntu-wasabi-fstab/</loc>
     <lastmod>2022-05-03T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/categories/quick-notes/</loc>
+    <loc>http://localhost:1313/post/</loc>
     <lastmod>2022-05-03T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/s3fs/</loc>
+    <loc>http://localhost:1313/categories/quick-notes/</loc>
     <lastmod>2022-05-03T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/</loc>
+    <loc>http://localhost:1313/tags/s3fs/</loc>
     <lastmod>2022-05-03T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/ubuntu/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2022-05-03T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/wasabi/</loc>
+    <loc>http://localhost:1313/tags/ubuntu/</loc>
     <lastmod>2022-05-03T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/munki/</loc>
+    <loc>http://localhost:1313/tags/wasabi/</loc>
+    <lastmod>2022-05-03T08:34:21-06:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/munki/</loc>
     <lastmod>2016-11-21T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/munki-enroll/</loc>
+    <loc>http://localhost:1313/tags/munki-enroll/</loc>
     <lastmod>2016-11-21T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/ubuntu-1604-munki-enroll-repo-setup/</loc>
+    <loc>http://localhost:1313/post/ubuntu-1604-munki-enroll-repo-setup/</loc>
     <lastmod>2016-11-21T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/categories/tutorials/</loc>
+    <loc>http://localhost:1313/categories/tutorials/</loc>
     <lastmod>2016-11-21T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/autokey/</loc>
+    <loc>http://localhost:1313/tags/autokey/</loc>
     <lastmod>2016-09-08T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/d-bus/</loc>
+    <loc>http://localhost:1313/tags/d-bus/</loc>
     <lastmod>2016-09-08T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/dbus-autokey-ubuntu/</loc>
+    <loc>http://localhost:1313/post/dbus-autokey-ubuntu/</loc>
     <lastmod>2016-09-08T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/rds/</loc>
+    <loc>http://localhost:1313/tags/rds/</loc>
     <lastmod>2016-08-31T09:30:34-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/redirect-root-url-rds-web-access/</loc>
+    <loc>http://localhost:1313/post/redirect-root-url-rds-web-access/</loc>
     <lastmod>2016-08-31T09:30:34-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/categories/diagrams/</loc>
+    <loc>http://localhost:1313/categories/diagrams/</loc>
     <lastmod>2016-08-30T13:50:34-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/visualizing-highly-available-rds-farm/</loc>
+    <loc>http://localhost:1313/post/visualizing-highly-available-rds-farm/</loc>
     <lastmod>2016-08-30T13:50:34-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/computer-security/</loc>
+    <loc>http://localhost:1313/tags/computer-security/</loc>
     <lastmod>2016-08-29T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/exchange-online-compromised-accounts/</loc>
+    <loc>http://localhost:1313/post/exchange-online-compromised-accounts/</loc>
     <lastmod>2016-08-29T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/exchange/</loc>
+    <loc>http://localhost:1313/tags/exchange/</loc>
     <lastmod>2016-08-29T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/office-365/</loc>
+    <loc>http://localhost:1313/tags/office-365/</loc>
     <lastmod>2016-08-29T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/tags/powershell/</loc>
+    <loc>http://localhost:1313/tags/powershell/</loc>
     <lastmod>2016-08-29T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>https://codyeding.com/exchange-online-add-permission-public-folder-recursively/</loc>
+    <loc>http://localhost:1313/post/exchange-online-add-permission-public-folder-recursively/</loc>
     <lastmod>2016-05-05T16:32:34-06:00</lastmod>
   </url>
 </urlset>

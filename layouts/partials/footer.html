@@ -6,11 +6,10 @@
       {{- else -}}
       <a class="soc" href="{{ $key.url }}" rel="me" title="{{ $key.name }}">{{ template "feathericon" (dict "Icon" $key.icon "UseCDN" .Site.Params.useCDN) }}</a>
       {{- end -}}
-      <a class="border"></a>
       {{- end -}}
     </div>
     <div class="footer-info">
-        © {{ dateFormat "2006" now }} Cody Eding. All rights reserved. | Built with <a href="https://gohugo.io">Hugo</a> and <a
+        | © {{ dateFormat "2006" now }} Cody Eding. All rights reserved. | Built with <a href="https://gohugo.io">Hugo</a> and <a
         href="https://github.com/athul/archie">Archie Theme</a>.
     </div>
   </footer>

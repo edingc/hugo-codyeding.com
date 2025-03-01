@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html><head lang="en"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Add permission to Public Folder recursively with PowerShell - Cody Eding</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Recursively add permissions to a Public Folder tree in Exchange Online using Windows PowerShell." />
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content="http://localhost:1313/post/exchange-online-add-permission-public-folder-recursively/">
+  <meta property="og:site_name" content="Cody Eding">
+  <meta property="og:title" content="Add permission to Public Folder recursively with PowerShell">
+  <meta property="og:description" content="Recursively add permissions to a Public Folder tree in Exchange Online using Windows PowerShell.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2016-05-05T16:32:34-06:00">
+    <meta property="article:modified_time" content="2016-05-05T16:32:34-06:00">
+    <meta property="article:tag" content="Office 365">
+    <meta property="article:tag" content="Exchange">
+    <meta property="article:tag" content="PowerShell">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Add permission to Public Folder recursively with PowerShell">
+  <meta name="twitter:description" content="Recursively add permissions to a Public Folder tree in Exchange Online using Windows PowerShell.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:1313/css/main.6a0f23ea50fd34b46fee262a5a68e17d458c51a2bc99ba1ba018065de6b180c3.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="http://localhost:1313/css/dark.50b57e12d401420df23965fed157368aba37b76df0ecefd0b1ecd4da664f01a0.css" media="(prefers-color-scheme: dark)"  /><script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [['$','$'], ['\\(','\\)']],
+				displayMath: [['$$','$$'], ['\[','\]']],
+				processEscapes: true,
+				processEnvironments: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+				TeX: { equationNumbers: { autoNumber: "AMS" },
+						 extensions: ["AMSmath.js", "AMSsymbols.js"] }
+			}
+		});
+		</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css">
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+					renderMathInElement(document.body, {
+							delimiters: [
+									{left: "$$", right: "$$", display: true},
+									{left: "$", right: "$", display: false}
+							]
+					});
+			});
+		</script>
+		
+		
+		<link rel="stylesheet" type="text/css" href="http://localhost:1313/css/custom.e35ebf57b7e77cbd90e8930a280330f6145446b8624d0e78cdfdb6137d90622e.css">
+		
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="http://localhost:1313/">Cody Eding</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">Posts</a>
+		
+		<a href="/tags">Tags</a>
+		
+		
+	</nav>
+</header>
+
+<main>
+  <article>
+    <div class="post-container">
+      
+      <div class="post-content">
+        <div class="title">
+          <h1 class="title">Add permission to Public Folder recursively with PowerShell</h1>
+          <div class="meta">Posted on May 5, 2016</div>
+        </div>
+        
+        <section class="body">
+          <p>We had a request to add permissions for a customer throughout a deeply nested structure in our Exchange Online Public Folders.</p>
+<p>These commands <strong>will not</strong> override or change permissions where they are already set.</p>
+<h3 id="connect-to-exchange-online-powershell">Connect to Exchange Online PowerShell</h3>
+<pre><code>$Cred = Get-Credential
+Connect-MSOLService -Credential $Cred
+$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell -Credential $Cred -Authentication Basic -AllowRedirection
+Import-PSSession $Session
+</code></pre>
+<h3 id="add-permissions-and-verify-success">Add Permissions and Verify Success</h3>
+<p>In PowerShell, run:</p>
+<pre><code>Get-PublicFolder -Identity &quot;\Folder Name&quot; -Recurse | Add-PublicFolderClientPermission -User jsmith -AccessRights Owner
+</code></pre>
+<p>Verify the change was successful:</p>
+<pre><code>Get-PublicFolder -Identity &quot;\Folder Name&quot; -Recurse | Get-PublicFolderClientPermission | Where-Object { $PSItem.User -like &quot;SMITH*&quot; }
+</code></pre>
+<p>Use the customer&rsquo;s name in the <em>Where-Object</em> cmdlet. All of our accounts are named in a &ldquo;LASTNAME, FIRSTNAME&rdquo; format, and the command reflects that. This command will print all of the customer&rsquo;s rights through the tree.</p>
+
+        </section>
+        <div class="post-tags">
+          
+          
+          <nav class="nav tags">
+            <ul class="tags">
+              
+              <li><a href="/tags/office-365">Office 365</a></li>
+              
+              <li><a href="/tags/exchange">Exchange</a></li>
+              
+              <li><a href="/tags/powershell">PowerShell</a></li>
+              
+            </ul>
+          </nav>
+          
+          
+        </div>
+      </div>
+
+      
+      
+    </div>
+
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    (function () {
+        
+        
+        if (window.location.hostname == "localhost")
+            return;
+
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        var disqus_shortname = 'codyeding';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+        Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+</main>
+<footer>
+    <div style="display:flex"><a class="soc" href="https://github.com/edingc" rel="me" title="GitHub"><svg class="feather">
+   <use href="/svg/feather-sprite.51cf5647cb1987f769b616558f2620fd9423d72058490231b391bf6aa3744b55.svg#github" />
+</svg></a><a class="border"></a></div>
+    <div class="footer-info">
+        © 2025 Cody Eding. All rights reserved. | Built with <a href="https://gohugo.io">Hugo</a> and <a
+        href="https://github.com/athul/archie">Archie Theme</a>.
+    </div>
+  </footer>
+  
+  </div>
+    </body>
+</html>
