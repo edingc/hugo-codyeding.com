@@ -15,7 +15,7 @@ paginate=3 # articles per page
 [params]
 	mode="auto" # color-mode → light,dark,toggle or auto
 	useCDN=true # don't use CDNs for fonts and icons, instead serve them locally.
-	subtitle = "Random IT musings."
+	subtitle = "The random musings of an IT Solutions Architect."
 	mathjax = true # enable MathJax support
 	katex = true # enable KaTeX support
 	customcss = ["css/custom.css"]
@@ -33,11 +33,6 @@ url = "https://github.com/edingc"
 name = "Home"
 url = "/"
 weight = 1
-
-[[menu.main]]
-name = "Posts"
-url = "/posts"
-weight = 2
 
 #[[menu.main]]
 #name = "About"
