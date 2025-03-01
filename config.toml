@@ -26,12 +26,6 @@ name = "GitHub"
 icon = "github"
 url = "https://github.com/edingc"
 
-[[params.social]]
-name = "Twitter"
-icon = "twitter"
-url = "https://twitter.com/edingc/"
-
-
 # Main menu Items
 
 [[menu.main]]
