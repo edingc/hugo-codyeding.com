@@ -1,78 +1,55 @@
-# title = "Hugo Themes"
-author = "Steve Francia"
-copyright = "© Copyright 2023 - Cody Eding. All rights reserved."
-paginate = 3
-languageCode = "en-us"
-DefaultContentLanguage = "en-us"
-enableInlineShortcodes = true
-# prevent build failures when using Hugo's Instagram shortcode due to deprecated Instagram API.
-# See https://github.com/gohugoio/hugo/issues/7228#issuecomment-714490456
-ignoreErrors = ["error-remote-getjson"]
-
-# ------------------------------
 baseURL = "https://codyeding.com/"
-theme = "hyde"
+languageCode = "en-us"
 title = "Cody Eding"
+theme="archie"
+copyright = "© Copyright 2023 - Cody Eding. All rights reserved."
+# Code Highlight
+pygmentsstyle = "monokai"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
 disqusShortname = "codyeding"
 
+paginate=3 # articles per page
+
 [params]
-  color = 'gray'
+	mode="auto" # color-mode → light,dark,toggle or auto
+	useCDN=false # don't use CDNs for fonts and icons, instead serve them locally.
+	subtitle = "Random IT musings."
+	mathjax = true # enable MathJax support
+	katex = true # enable KaTeX support
 
-  twitter = 'edingc'
-  github = 'edingc'
-  instagram = 'edingc'
+# Social Tags
 
-  avatar = 'cody.eding@gmail.com'
-  name = 'Cody Eding'
-  bio = 'Test biography.'
-# ------------------------------
+[[params.social]]
+name = "GitHub"
+icon = "github"
+url = "https://github.com/edingc"
 
-# needed to  render raw HTML (e.g. <sub>, <sup>, <kbd>, <mark>)
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
+[[params.social]]
+name = "Twitter"
+icon = "twitter"
+url = "https://twitter.com/edingc/"
 
-[menu]
 
- # [[menu.main]]
- #   identifier = "about"
- #   name = "About"
- #   url = "/about/"
- #   weight = 10
- # [[menu.main]]
- #   identifier = "contact"
- #   name = "Contact"
- #   url = "/contact/"
- #   weight = 10
+# Main menu Items
 
-[taxonomies]
-category = "categories"
-tag = "tags"
-series = "series"
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
 
-[privacy]
+[[menu.main]]
+name = "All posts"
+url = "/posts"
+weight = 2
 
-  [privacy.vimeo]
-    disabled = false
-    simple = true
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 3
 
-  [privacy.twitter]
-    disabled = false
-    enableDNT = true
-    simple = true
-
-  [privacy.instagram]
-    disabled = false
-    simple = true
-
-  [privacy.youtube]
-    disabled = false
-    privacyEnhanced = true
-
-[services]
-
-  [services.instagram]
-    disableInlineCSS = true
-
-  [services.twitter]
+[[menu.main]]
+name = "Tags"
+url = "/tags"
+weight = 4
