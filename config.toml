@@ -2,7 +2,7 @@ baseURL = "https://codyeding.com/"
 languageCode = "en-us"
 title = "Cody Eding"
 theme="archie"
-copyright = "© Copyright 2023 - Cody Eding. All rights reserved."
+copyright = "© Cody Eding. All rights reserved."
 # Code Highlight
 pygmentsstyle = "monokai"
 pygmentscodefences = true
