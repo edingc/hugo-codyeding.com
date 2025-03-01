@@ -11,7 +11,7 @@ ignoreErrors = ["error-remote-getjson"]
 
 # ------------------------------
 baseURL = "https://codyeding.com/"
-theme = "paper"
+theme = "hyde"
 title = "Cody Eding"
 disqusShortname = "codyeding"
 
