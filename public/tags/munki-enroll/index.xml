@@ -10,9 +10,9 @@
     <atom:link href="http://localhost:1313/tags/munki-enroll/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Setup secure Munki repository and munki-enroll on Ubuntu 16.04 LTS</title>
-      <link>http://localhost:1313/post/ubuntu-1604-munki-enroll-repo-setup/</link>
+      <link>http://localhost:1313/ubuntu-1604-munki-enroll-repo-setup/</link>
       <pubDate>Mon, 21 Nov 2016 08:34:21 -0600</pubDate>
-      <guid>http://localhost:1313/post/ubuntu-1604-munki-enroll-repo-setup/</guid>
+      <guid>http://localhost:1313/ubuntu-1604-munki-enroll-repo-setup/</guid>
       <description>I managed several thousand Macintosh desktops in a previous job with the help of Munki, an awesome open-source tool written by Greg Neagle. Alongside Munki, I created munki-enroll, which is now a popular way to manage the automated creation of computer-specific Munki manifests.&#xA;I recently worked on a GitHub bug report that was actually not a bug in the munki-enroll code, but instead a problem stemming from a lack of documentation regarding the server-side requirements of munki-enroll.</description>
     </item>
   </channel>

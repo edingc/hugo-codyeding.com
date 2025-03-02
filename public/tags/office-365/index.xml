@@ -10,16 +10,16 @@
     <atom:link href="http://localhost:1313/tags/office-365/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Dealing with compromised accounts in Exchange Online</title>
-      <link>http://localhost:1313/post/exchange-online-compromised-accounts/</link>
+      <link>http://localhost:1313/exchange-online-compromised-accounts/</link>
       <pubDate>Mon, 29 Aug 2016 08:34:21 -0600</pubDate>
-      <guid>http://localhost:1313/post/exchange-online-compromised-accounts/</guid>
+      <guid>http://localhost:1313/exchange-online-compromised-accounts/</guid>
       <description>We have lately had a rash of compromised email accounts in our Office 365 Exchange Online infrastructure. It appears a well-crafted phishing email caught at least a small percentage of our 100,000-plus mailboxes.&#xA;The outbound SPAM protection in Office 365 and Exchange Online is very robust. Suspected SPAM messages are sent through a high-risk pool of IP addresses, and accounts are limited to 10,000 outbound messages per day before being blocked by the anti-SPAM intelligence.</description>
     </item>
     <item>
       <title>Add permission to Public Folder recursively with PowerShell</title>
-      <link>http://localhost:1313/post/exchange-online-add-permission-public-folder-recursively/</link>
+      <link>http://localhost:1313/exchange-online-add-permission-public-folder-recursively/</link>
       <pubDate>Thu, 05 May 2016 16:32:34 -0600</pubDate>
-      <guid>http://localhost:1313/post/exchange-online-add-permission-public-folder-recursively/</guid>
+      <guid>http://localhost:1313/exchange-online-add-permission-public-folder-recursively/</guid>
       <description>We had a request to add permissions for a customer throughout a deeply nested structure in our Exchange Online Public Folders.&#xA;These commands will not override or change permissions where they are already set.&#xA;Connect to Exchange Online PowerShell $Cred = Get-Credential Connect-MSOLService -Credential $Cred $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell -Credential $Cred -Authentication Basic -AllowRedirection Import-PSSession $Session Add Permissions and Verify Success In PowerShell, run:&#xA;Get-PublicFolder -Identity &amp;quot;\Folder Name&amp;quot; -Recurse | Add-PublicFolderClientPermission -User jsmith -AccessRights Owner Verify the change was successful:</description>
     </item>
   </channel>

@@ -11,7 +11,7 @@
     <loc>http://localhost:1313/tags/linux/</loc>
     <lastmod>2022-05-03T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/s3fs-ubuntu-wasabi-fstab/</loc>
+    <loc>http://localhost:1313/s3fs-ubuntu-wasabi-fstab/</loc>
     <lastmod>2022-05-03T08:34:21-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/</loc>
@@ -38,7 +38,7 @@
     <loc>http://localhost:1313/tags/munki-enroll/</loc>
     <lastmod>2016-11-21T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/ubuntu-1604-munki-enroll-repo-setup/</loc>
+    <loc>http://localhost:1313/ubuntu-1604-munki-enroll-repo-setup/</loc>
     <lastmod>2016-11-21T08:34:21-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/tutorials/</loc>
@@ -50,25 +50,19 @@
     <loc>http://localhost:1313/tags/d-bus/</loc>
     <lastmod>2016-09-08T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/dbus-autokey-ubuntu/</loc>
+    <loc>http://localhost:1313/dbus-autokey-ubuntu/</loc>
     <lastmod>2016-09-08T08:34:21-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/rds/</loc>
     <lastmod>2016-08-31T09:30:34-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/redirect-root-url-rds-web-access/</loc>
+    <loc>http://localhost:1313/redirect-root-url-rds-web-access/</loc>
     <lastmod>2016-08-31T09:30:34-06:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/diagrams/</loc>
-    <lastmod>2016-08-30T13:50:34-06:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/visualizing-highly-available-rds-farm/</loc>
-    <lastmod>2016-08-30T13:50:34-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/computer-security/</loc>
     <lastmod>2016-08-29T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/exchange-online-compromised-accounts/</loc>
+    <loc>http://localhost:1313/exchange-online-compromised-accounts/</loc>
     <lastmod>2016-08-29T08:34:21-06:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/exchange/</loc>
@@ -80,7 +74,7 @@
     <loc>http://localhost:1313/tags/powershell/</loc>
     <lastmod>2016-08-29T08:34:21-06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/exchange-online-add-permission-public-folder-recursively/</loc>
+    <loc>http://localhost:1313/exchange-online-add-permission-public-folder-recursively/</loc>
     <lastmod>2016-05-05T16:32:34-06:00</lastmod>
   </url>
 </urlset>

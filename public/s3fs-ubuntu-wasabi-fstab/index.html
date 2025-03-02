@@ -1,107 +1,160 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
-<head>
-  <link href="https://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.98.0" />
+<html><head lang="en"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Mount Wasabi storage bucket using s3fs and /etc/fstab on Ubuntu - Cody Eding</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Mount a Wasabi storage bucket through /etc/fstab usign s3fs on Ubuntu." />
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content="http://localhost:1313/s3fs-ubuntu-wasabi-fstab/">
+  <meta property="og:site_name" content="Cody Eding">
+  <meta property="og:title" content="Mount Wasabi storage bucket using s3fs and /etc/fstab on Ubuntu">
+  <meta property="og:description" content="Mount a Wasabi storage bucket through /etc/fstab usign s3fs on Ubuntu.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2022-05-03T08:34:21-06:00">
+    <meta property="article:modified_time" content="2022-05-03T08:34:21-06:00">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Ubuntu">
+    <meta property="article:tag" content="S3fs">
+    <meta property="article:tag" content="Wasabi">
 
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mount Wasabi storage bucket using s3fs and /etc/fstab on Ubuntu">
+  <meta name="twitter:description" content="Mount a Wasabi storage bucket through /etc/fstab usign s3fs on Ubuntu.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
-  <title>Mount Wasabi storage bucket using s3fs and /etc/fstab on Ubuntu &middot; Cody Eding</title>
-  <meta name="description" content="Mount a Wasabi storage bucket through /etc/fstab usign s3fs on Ubuntu." />
-
-  
-  <link type="text/css" rel="stylesheet" href="https://codyeding.com/css/print.css" media="print">
-  <link type="text/css" rel="stylesheet" href="https://codyeding.com/css/poole.css">
-  <link type="text/css" rel="stylesheet" href="https://codyeding.com/css/syntax.css">
-  <link type="text/css" rel="stylesheet" href="https://codyeding.com/css/hyde.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Source+Sans+Pro:400,400i,700">
-
-
-  
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
-  <link rel="shortcut icon" href="/favicon.png">
-
-  
-  
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:1313/css/main.6a0f23ea50fd34b46fee262a5a68e17d458c51a2bc99ba1ba018065de6b180c3.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="http://localhost:1313/css/dark.50b57e12d401420df23965fed157368aba37b76df0ecefd0b1ecd4da664f01a0.css" media="(prefers-color-scheme: dark)"  /><script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [['$','$'], ['\\(','\\)']],
+				displayMath: [['$$','$$'], ['\[','\]']],
+				processEscapes: true,
+				processEnvironments: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+				TeX: { equationNumbers: { autoNumber: "AMS" },
+						 extensions: ["AMSmath.js", "AMSsymbols.js"] }
+			}
+		});
+		</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css">
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+					renderMathInElement(document.body, {
+							delimiters: [
+									{left: "$$", right: "$$", display: true},
+									{left: "$", right: "$", display: false}
+							]
+					});
+			});
+		</script>
+		
+		
+		<link rel="stylesheet" type="text/css" href="http://localhost:1313/css/custom.fa7b75398ad3ddcf17a5c52d7ebbddca8a9a4aafe2e18801adafcbf4932a1904.css">
+		
 </head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="http://localhost:1313/">Cody Eding</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/tags">Tags</a>
+		
+		
+	</nav>
+</header>
 
-  <body class="theme-base-blue ">
-  <aside class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      <a href="https://codyeding.com/"><h1>Cody Eding</h1></a>
-      <p class="lead">
-       Random IT musings. 
-      </p>
+<main>
+  <article>
+    <div class="post-container">
+      
+      <div class="post-content">
+        <div class="title">
+          <h1 class="title">Mount Wasabi storage bucket using s3fs and /etc/fstab on Ubuntu</h1>
+          <div class="meta">Posted on May 3, 2022</div>
+        </div>
+        
+        <section class="body">
+          <p>Wasabi&rsquo;s <a href="https://wasabi-support.zendesk.com/hc/en-us/articles/115001744651-How-do-I-use-S3FS-with-Wasabi-">official documentation on using s3fs to mount a storage bucket</a> is lacking an example of using <code>/etc/fstab</code> to persist the bucket mount following a reboot.</p>
+<p>To use <code>/etc/fstab</code> to permanently mount a Wasabi bucket using s3fs on Ubuntu, first install s3fs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo apt-get install s3fs
+</span></span></code></pre></div><p>Create a filesystem location to mount the bucket:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo mkdir /mnt/wasabi_bucket
+</span></span><span style="display:flex;"><span>sudo chmod 777 /mnt/wasabi_bucket
+</span></span></code></pre></div><p>Create the entry in /etc/fstab:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>wasabi_bucket:/ /mnt/wasabi_bucket fuse.s3fs _netdev,allow_other,use_path_request_style,url=https://s3.wasabisys.com,use_cache=/tmp 0 0
+</span></span></code></pre></div><p>Mount the bucket:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo mount -a
+</span></span></code></pre></div>
+        </section>
+        <div class="post-tags">
+          
+          
+          <nav class="nav tags">
+            <strong>Tags: </strong>
+              
+              <a class="tag" href="/tags/linux">Linux</a>
+              
+              <a class="tag" href="/tags/ubuntu">Ubuntu</a>
+              
+              <a class="tag" href="/tags/s3fs">s3fs</a>
+              
+              <a class="tag" href="/tags/wasabi">Wasabi</a>
+              
+          </nav>
+          
+          
+        </div>
+      </div>
+
+      
+      
     </div>
 
-    <nav>
-      <ul class="sidebar-nav">
-        <li><a href="https://codyeding.com/">Home</a> </li>
-        <li><a href="https://github.com/edingc/"> Github </a></li><li><a href="https://www.linkedin.com/in/username/"> LinkedIn </a></li><li><a href="https://twitter.com/edingc/"> Twitter </a></li>
-      </ul>
-    </nav>
-
-    <p>&copy; 2022. All rights reserved. </p>
-  </div>
-</aside>
-
-    <main class="content container">
-    <div class="post">
-  <h1>Mount Wasabi storage bucket using s3fs and /etc/fstab on Ubuntu</h1>
-  <time datetime=2022-05-03T08:34:21-0600 class="post-date">Tue, May 3, 2022</time>
-  <p>Wasabi&rsquo;s <a href="https://wasabi-support.zendesk.com/hc/en-us/articles/115001744651-How-do-I-use-S3FS-with-Wasabi-">official documentation on using s3fs to mount a storage bucket</a> is lacking an example of using <code>/etc/fstab</code> to persist the bucket mount following a reboot.</p>
-<p>To use <code>/etc/fstab</code> to permanently mount a Wasabi bucket using s3fs on Ubuntu, first install s3fs:</p>
-<pre tabindex="0"><code>sudo apt-get install s3fs
-</code></pre><p>Create a filesystem location to mount the bucket:</p>
-<pre tabindex="0"><code>sudo mkdir /mnt/wasabi_bucket
-sudo chmod 777 /mnt/wasabi_bucket
-</code></pre><p>Create the entry in /etc/fstab:</p>
-<pre tabindex="0"><code>wasabi_bucket:/ /mnt/wasabi_bucket fuse.s3fs _netdev,allow_other,use_path_request_style,url=https://s3.wasabisys.com,use_cache=/tmp 0 0
-</code></pre><p>Mount the bucket:</p>
-<pre tabindex="0"><code>sudo mount -a
-</code></pre>
-</div>
-
-<h2>Comments</h2>
-<div id="disqus_thread"></div>
-<script type="application/javascript">
-    window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    (function () {
+        
+        
+        if (window.location.hostname == "localhost")
             return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "codyeding" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
+
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        var disqus_shortname = 'codyeding';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </main>
-
-    
-      
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-2714311-7', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
-  </body>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+        Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+</main>
+<footer>
+    <div style="display:flex"><a class="soc" href="https://github.com/edingc" rel="me" title="GitHub"><svg class="feather">
+   <use href="/svg/feather-sprite.51cf5647cb1987f769b616558f2620fd9423d72058490231b391bf6aa3744b55.svg#github" />
+</svg></a></div>
+    <div class="footer-info">
+        | © 2025 Cody Eding. All rights reserved. | Built with <a href="https://gohugo.io">Hugo</a> and <a
+        href="https://github.com/athul/archie">Archie Theme</a>.
+    </div>
+  </footer>
+  
+  </div>
+    </body>
 </html>
